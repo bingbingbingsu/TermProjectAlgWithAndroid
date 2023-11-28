@@ -7,87 +7,172 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <RadioGroup
-        android:id="@+id/radioGroupD"
+    <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/radioGroupS"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioButtonSeoulD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seoul" />
-
-        <RadioButton
-            android:id="@+id/radioButtonBusanD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Busan" />
-
-        <RadioButton
-            android:id="@+id/radioButtonGwangjuD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gwangju" />
-
-        <RadioButton
-            android:id="@+id/radioButtonGyeongjuD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gyeongju" />
-
-        <RadioButton
-            android:id="@+id/radioButtonDaeguD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Daegu" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/radioGroupS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroupD"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp">
 
-        <RadioButton
-            android:id="@+id/radioButtonSeoul"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seoul" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radioButtonBusan"
+            <RadioGroup
+                android:id="@+id/radioGroupS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radioButtonSeoul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seoul" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonBusan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Busan" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGwangju"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gwangju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGyeongju"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gyeongju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonDaegu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daegu" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonChuncheon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="chuncheon" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGangneung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gangneung" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonJeonju"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="jeonju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonPohang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="pohang" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonUlsan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ulsan" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/scrollView3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Busan" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radioButtonGwangju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gwangju" />
+            <RadioGroup
+                android:id="@+id/radioGroupD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/radioButtonGyeongju"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gyeongju" />
+                <RadioButton
+                    android:id="@+id/radioButtonSeoulD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seoul" />
 
-        <RadioButton
-            android:id="@+id/radioButtonDaegu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Daegu" />
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioButtonBusanD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Busan" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGwangjuD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gwangju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGyeongjuD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gyeongju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonDaeguD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daegu" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonChuncheonD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chuncheon" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGangneungD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gangneung" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonJeonjuD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="jeonju" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonPohangD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="pohang" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonUlsanD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ulsan" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -95,7 +180,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="365dp"
+        app:layout_constraintGuide_begin="433dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -113,23 +198,23 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="100dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/mode"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checkedButton="@id/timeM"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="27dp"
-        android:checkedButton="@id/timeM">
+        tools:layout_editor_absoluteY="27dp">
 
         <RadioButton
             android:id="@+id/timeM"
@@ -141,7 +226,7 @@
             android:id="@+id/distantM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="distant" />
+            android:text="cost" />
 
         <RadioButton
             android:id="@+id/efficiencyM"

@@ -9,7 +9,7 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+//import androidx.lifecycle.ViewModelProvider
 import com.example.findpath.R
 import com.example.findpath.databinding.FragmentHomeBinding
 
@@ -31,8 +31,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+//        val homeViewModel =
+//            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -50,6 +50,11 @@ class HomeFragment : Fragment() {
                 R.id.radioButtonGwangju -> startingLoc = "gwangju"
                 R.id.radioButtonGyeongju -> startingLoc = "gyeongju"
                 R.id.radioButtonDaegu -> startingLoc = "daegu"
+                R.id.radioButtonChuncheon -> startingLoc = "chuncheon"
+                R.id.radioButtonGangneung -> startingLoc = "gangneung"
+                R.id.radioButtonJeonju -> startingLoc = "jeonju"
+                R.id.radioButtonPohang -> startingLoc = "pohang"
+                R.id.radioButtonUlsan -> startingLoc = "ulsan"
             }
         }
 
@@ -60,6 +65,11 @@ class HomeFragment : Fragment() {
                 R.id.radioButtonGwangjuD -> destination = "gwangju"
                 R.id.radioButtonGyeongjuD -> destination = "gyeongju"
                 R.id.radioButtonDaeguD -> destination = "daegu"
+                R.id.radioButtonChuncheonD -> destination = "chuncheon"
+                R.id.radioButtonGangneungD -> destination = "gangneung"
+                R.id.radioButtonJeonjuD -> destination = "jeonju"
+                R.id.radioButtonPohangD -> destination = "pohang"
+                R.id.radioButtonUlsanD -> destination = "ulsan"
             }
         }
 
@@ -74,42 +84,50 @@ class HomeFragment : Fragment() {
 
         val button = binding.button
 
-        button.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                if (startingLoc==destination) {
-                    Toast.makeText(activity,"Please select different values",Toast.LENGTH_SHORT).show()
-                }else if (startingLoc=="a") {
-                    Toast.makeText(activity,"Please select values",Toast.LENGTH_SHORT).show()
-                }
-                else {
-                    algorithm(resultTextView)
-                }
+        button.setOnClickListener {
+            if (startingLoc == destination) {
+                Toast.makeText(activity, "Please select different values", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (startingLoc == "a" || destination == "b") {
+                Toast.makeText(activity, "Please select values", Toast.LENGTH_SHORT).show()
+            } else {
+                algorithm(resultTextView)
             }
-        })
+        }
 
 
         return root
     }
-    fun algorithm(resultTextView: TextView) {
-        var iii = 4
-        val names:Array<String> = arrayOf("seoul","busan","gwangju","gyeongju","daegu")
+    private fun algorithm(resultTextView: TextView) {
+        var iii = 9
+        val names:Array<String> = arrayOf("seoul","busan","gwangju","gyeongju","daegu", "chuncheon", "gangneung", "jeonju", "pohang", "ulsan")
         val time = arrayOf(
-            arrayOf(0.0, 300.0, 240.0, 255.0, 234.0),
-            arrayOf(300.0, 0.0, 178.0, 84.0, 112.0),
-            arrayOf(240.0, 178.0, 0.0, 172.0, 136.0),
-            arrayOf(255.0, 84.0, 172.0, 0.0, 79.0),
-            arrayOf(234.0, 112.0, 136.0, 79.0, 0.0)
+            arrayOf(0.0, 300.0, 240.0, 255.0, 234.0, 80.0, 140.0, 137.0, 111.0, 232.0), // seoul부터 다른 노드까지
+            arrayOf(300.0, 0.0, 178.0, 84.0, 112.0, 256.0, 245.0, 163.0, 177.0, 60.0), // busan부터 다른 노드까지
+            arrayOf(240.0, 178.0, 0.0, 172.0, 136.0, 252.0, 276.0, 78.0, 114.0, 195.0), // gwanju부터 다른 노드까지
+            arrayOf(255.0, 84.0, 172.0, 0.0, 79.0, 215.0, 187.0, 166.0, 144.0, 44.0), // gyeongju부터 다른 노드까지
+            arrayOf(234.0, 112.0, 136.0, 79.0, 0.0, 189.0, 209.0, 121.0, 107.0, 86.0), // daegu부터 다른 노드까지
+            arrayOf(62.0, 256.0, 252.0, 215.0, 189.0, 0.0, 65.0, 207.0, 166.0, 248.0), // chuncheon부터 다른 노드까지
+            arrayOf(122.0, 245.0, 276.0, 187.0, 209.0, 65.0, 0.0, 237.0, 189.0, 221.0), // gangneung부터 다른 노드까지
+            arrayOf(137.0, 163.0, 78.0, 166.0, 121.0, 207.0, 237.0, 0.0, 72.0, 204.0), // jeonju부터 다른 노드까지
+            arrayOf(75.0, 177.0, 114.0, 144.0, 107.0, 166.0, 189.0, 72.0, 0.0, 183.0), // pohang부터 다른 노드까지
+            arrayOf(232.0, 60.0, 195.0, 44.0, 86.0, 248.0, 221.0, 204.0, 183.0, 0.0) // ulsan부터 다른 노드까지
         )
 
-        val cost = arrayOf(
-            arrayOf(0.0, 19.3, 14.7, 17.7, 12.9),
-            arrayOf(19.3, 0.0, 12.8, 4.7, 7.0),
-            arrayOf(14.7, 12.8, 0.0, 14.1, 9.7),
-            arrayOf(17.7, 4.7, 14.1, 0.0, 4.3),
-            arrayOf(12.9, 7.0, 9.7, 4.3, 0.0)
+        val cost = arrayOf( // 0.0000000000000001 은 0 (0은 노드가 연결 안되어있다라고 알고리즘을 만들어서.....)
+            arrayOf(0.0, 19.3, 14.7, 17.7, 12.9, 3.9, 10.9, 11.3, 8.5, 19.8), // seoul부터 다른 노드까지
+            arrayOf(19.3, 0.0, 12.8, 4.7, 7.0, 19.4, 9.4, 11.7, 13.9, 0.0000000000000001), // busan부터 다른 노드까지
+            arrayOf(14.7, 12.8, 0.0, 14.1, 9.7, 20.5, 20.2, 0.0000000000000001, 7.7, 14.1), // gwanju부터 다른 노드까지
+            arrayOf(17.7, 4.7, 14.1, 0.0, 4.3, 16.7, 3.5, 12.3, 11.6, 2.0), // gyeongju부터 다른 노드까지
+            arrayOf(12.9, 7.0, 9.7, 4.3, 0.0, 13.5, 15.5, 8.2, 8.1, 6.0), // daegu부터 다른 노드까지
+            arrayOf(3.9, 19.4, 20.5, 16.7, 13.5, 0.0, 7.4, 17.9, 11.4, 18.8), // chuncheon부터 다른 노드까지
+            arrayOf(10.9, 9.4, 20.2, 3.5, 15.5, 7.4, 0.0, 16.8, 13.2, 6.9), // gangneung부터 다른 노드까지
+            arrayOf(11.3, 11.7, 0.0000000000000001, 12.3, 8.2, 17.9, 16.8, 0.0, 4.3, 13.8), // jeonju부터 다른 노드까지
+            arrayOf(8.5,13.9, 7.7, 11.6, 8.1, 11.4, 13.2, 4.3, 0.0, 13.9), // pohang부터 다른 노드까지
+            arrayOf(19.8, 0.0000000000000001, 14.1, 2.0, 6.0, 18.8, 6.9, 13.8, 13.9, 0.0) // ulsan부터 다른 노드까지
         )
 
-        val efficiency = Array(time.size){Array<Double>(time.size) {0.0} }
+        val efficiency = Array(time.size){Array(time.size) {0.0} }
 
         for (i in time.indices) {
             for (k in time.indices) {
@@ -123,21 +141,23 @@ class HomeFragment : Fragment() {
             }
         }
 
-        var startingNode:Int = -1
-        var destinationNode:Int = -1
 
-        startingNode = names.indexOf(startingLoc)
-        destinationNode = names.indexOf(destination)
+
+
+
+
+        val startingNode = names.indexOf(startingLoc)
+        val destinationNode = names.indexOf(destination)
 
         when (mode) {
             "timeM" -> {
-                var minTime:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0)
-                var minTimeParent:Array<Int> = arrayOf(0,0,0,0,0)
+                val minTime:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+                val minTimeParent:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0,0)
                 dijkstra(minTime,minTimeParent,startingNode,time)
                 val outCost: Double = minTime[destinationNode] / 60.0 // 분 단위로 변환하여 소수점으로 표현
-                val firstOutput: String = "Time: ${"%.2f".format(outCost)}"
-                var timeName:Array<Int> = arrayOf(-1,-1,-1,-1,-1)
-                var timeTracebackOut:String = ""
+                val firstOutput = "Time: ${"%.2f".format(outCost)}"
+                val timeName:Array<Int> = arrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1)
+                var timeTracebackOut = ""
                 traceback(timeName,minTimeParent,destinationNode,startingNode,0)
 
                 while (iii!=0) {
@@ -146,17 +166,17 @@ class HomeFragment : Fragment() {
                     }
                     iii--
                 }
-                timeTracebackOut += "${names[timeName[iii]]}"
-                resultTextView.setText(firstOutput+"\n"+timeTracebackOut)
+                timeTracebackOut += names[timeName[iii]]
+                resultTextView.text = firstOutput+"\n"+timeTracebackOut
             }
             "costM" -> {
-                var minCost:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0)
-                var minCostParent:Array<Int> = arrayOf(0,0,0,0,0)
+                val minCost:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+                val minCostParent:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0,0)
                 dijkstra(minCost,minCostParent,startingNode,cost)
                 val outCost: Double = minCost[destinationNode]
-                val firstOutput: String = "Cost: ${"%.2f".format(outCost)}"
-                var costName:Array<Int> = arrayOf(-1,-1,-1,-1,-1)
-                var costTracebackOut:String = ""
+                val firstOutput = "Cost: ${"%.2f".format(outCost)}"
+                val costName:Array<Int> = arrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1)
+                var costTracebackOut = ""
                 traceback(costName,minCostParent,destinationNode,startingNode,0)
 
                 while (iii!=0) {
@@ -165,15 +185,15 @@ class HomeFragment : Fragment() {
                     }
                     iii--
                 }
-                costTracebackOut += "${names[costName[iii]]}"
-                resultTextView.setText(firstOutput+"\n"+costTracebackOut)
+                costTracebackOut += names[costName[iii]]
+                resultTextView.text = firstOutput+"\n"+costTracebackOut
             }
             "effM" -> {
-                var minEff:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0)
-                var minEffParent:Array<Int> = arrayOf(0,0,0,0,0)
+                val minEff:Array<Double> = arrayOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+                val minEffParent:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0,0)
                 dijkstra(minEff,minEffParent,startingNode,efficiency)
-                var effName:Array<Int> = arrayOf(-1,-1,-1,-1,-1)
-                var effTracebackOut:String = ""
+                val effName:Array<Int> = arrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1)
+                var effTracebackOut = ""
                 traceback(effName,minEffParent,destinationNode,startingNode,0)
 
                 while (iii!=0) {
@@ -184,8 +204,8 @@ class HomeFragment : Fragment() {
                     Log.i("test","!!!")
                     iii--
                 }
-                effTracebackOut += "${names[effName[iii]]}"
-                resultTextView.setText("eff:"+"\n"+effTracebackOut)
+                effTracebackOut += names[effName[iii]]
+                resultTextView.text = "eff:\n$effTracebackOut"
             }
 
         }
@@ -194,8 +214,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    fun dijkstra(distant:Array<Double>, parent:Array<Int>,startingNode:Int,graph:Array<Array<Double>>) {
-        var visited:Array<Int> = arrayOf(0,0,0,0,0)
+    private fun dijkstra(distant:Array<Double>, parent:Array<Int>, startingNode:Int, graph:Array<Array<Double>>) {
+        val visited:Array<Int> = arrayOf(0,0,0,0,0,0,0,0,0,0)
 
         for (i in distant.indices) {
             distant[i] = Double.POSITIVE_INFINITY
@@ -225,7 +245,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun traceback(names:Array<Int>, parent: Array<Int>, start:Int, dest:Int, flag:Int ) {
+    private fun traceback(names:Array<Int>, parent: Array<Int>, start:Int, dest:Int, flag:Int ) {
         if (start==dest) {
             names[flag]=start
         } else {
